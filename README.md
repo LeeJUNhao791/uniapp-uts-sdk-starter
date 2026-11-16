@@ -2,7 +2,11 @@
 
 一个可从源码构建的 Android AAR、一个 uni-app UTS 插件和一个 Vue 3 示例页。点「模拟扫码」，页面收到原生 AAR 回调并显示 `DEMO-0001`。示例无需 PDA、厂商 SDK 或网络服务。
 
-首版面向 **uni-app Vue 3 的 Android App**，最低 Android SDK 配置为 23。示例只生成模拟条码。它适合用来验证自己的 AAR 如何接进 uni-app。
+面向 **uni-app Vue 3 的 Android App**，最低 Android SDK 配置为 23。示例只生成模拟条码，适合用来验证自己的 AAR 如何接进 uni-app。
+
+[Android 图文上手指南](docs/android-quickstart.md) · [示例 AAR 构建检查](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/actions/workflows/android-aar.yml)
+
+<img src="docs/images/pixel-4-xl-callback.png" width="260" alt="Pixel 4 XL 上的 Android SDK 回调示例，显示最近条码 DEMO-0001 和收到原生 SDK 回调">
 
 ## 1. 构建和验证示例 AAR
 
@@ -27,9 +31,7 @@ cd android-sdk
 
 ## 2. 在 Android App 中验收
 
-1. 用 HBuilderX 5.07 打开 `demo` 目录。通过 HBuilderX 的 `manifest.json` 配置页获取你自己的 DCloud AppID。
-2. 连接已授权 USB 调试的 Android 手机，在 HBuilderX 为该示例制作包含 AAR 的 Android 自定义调试基座。选择该自定义基座运行；你变更 AAR 或插件的原生配置后需要重新制作基座。 [DCloud 自定义基座说明](https://uniapp.dcloud.net.cn/plugin/uts-plugin.html#%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%BA%E5%BA%A7)
-3. 按下表操作。回调计数在当前页面内保留。
+按[图文上手指南](docs/android-quickstart.md)获取测试 AppID、制作 Android 自定义调试基座并运行到手机。基座运行后按下表验收。回调计数在当前页面内保留。
 
 | 操作 | 预期结果 |
 | --- | --- |
@@ -53,6 +55,7 @@ cd android-sdk
 
 ## 验证记录
 
+- GitHub Actions：从干净检出编译示例 AAR、运行 Java 回调测试、核对插件目录中的 AAR 副本并检查公开 AppID 为空。
 - Windows / JDK 17 / Android SDK 35：Gradle 构建、AAR 复制及 Java 监听生命周期测试通过。
 - HBuilderX 5.07：本地编译器生成 uni-app Android 页面资源及 Kotlin 桥，并复制了同一份 AAR。
 - 2026-11-16，Pixel 4 XL / Android 11（API 30）：使用 HBuilderX 5.07 自定义基座实测。未监听时回调为 0，开启后连续收到两次 `DEMO-0001`，停止后计数保持 2，重新监听后增至 3，切到后台再返回后模拟扫码仍保持 3。已核对手机上安装的 APK 与本地自定义基座 SHA-256 一致。
