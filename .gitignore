@@ -1,0 +1,12 @@
+.gradle/
+**/build/
+**/local.properties
+**/.idea/
+**/.hbuilderx/
+**/unpackage/
+**/node_modules/
+*.apk
+*.aab
+*.jks
+*.keystore
+demo/uni_modules/*/utssdk/app-android/libs/*.aar

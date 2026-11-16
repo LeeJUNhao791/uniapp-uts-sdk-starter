@@ -1,0 +1,4 @@
+export type ScanCallback = (code: string) => void
+export type OnScan = (callback: ScanCallback) => boolean
+export type SimulateScan = () => boolean
+export type StopScan = () => void

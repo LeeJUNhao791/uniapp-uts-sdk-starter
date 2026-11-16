@@ -1,0 +1,30 @@
+plugins {
+    id 'com.android.library' version '8.13.1'
+}
+
+android {
+    namespace 'io.github.leejunhao791.utssdkstarter'
+    compileSdk 35
+
+    defaultConfig {
+        minSdk 23
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+tasks.register('verifyDemoScanner', JavaExec) {
+    dependsOn 'compileReleaseUnitTestJavaWithJavac'
+    classpath layout.buildDirectory.dir('intermediates/javac/releaseUnitTest/compileReleaseUnitTestJavaWithJavac/classes'),
+              layout.buildDirectory.dir('intermediates/javac/release/compileReleaseJavaWithJavac/classes')
+    mainClass = 'io.github.leejunhao791.utssdkstarter.DemoScannerTest'
+}
+
+tasks.register('stageDemoAar', Copy) {
+    dependsOn 'bundleReleaseAar'
+    from(layout.buildDirectory.file('outputs/aar/demo-scanner-release.aar'))
+    into('../demo/uni_modules/ljh-sdk-starter/utssdk/app-android/libs')
+}

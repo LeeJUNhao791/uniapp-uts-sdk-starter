@@ -1,0 +1,23 @@
+import DemoScanListener from 'io.github.leejunhao791.utssdkstarter.DemoScanListener'
+import DemoScanner from 'io.github.leejunhao791.utssdkstarter.DemoScanner'
+import { ScanCallback, SimulateScan, StopScan } from '../interface.uts'
+
+const scanner = new DemoScanner()
+
+@UTSJS.keepAlive
+export function onScan(callback: ScanCallback): boolean {
+  const listener = new (class implements DemoScanListener {
+    override onScan(code: string): void {
+      callback(code)
+    }
+  })
+  return scanner.start(listener)
+}
+
+export const simulateScan: SimulateScan = (): boolean => {
+  return scanner.simulateScan()
+}
+
+export const stopScan: StopScan = (): void => {
+  scanner.stop()
+}
