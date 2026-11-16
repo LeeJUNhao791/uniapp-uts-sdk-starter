@@ -5,6 +5,7 @@
     <view class="actions">
       <button :disabled="listening" @click="start">开始监听</button>
       <button @click="simulate">模拟扫码</button>
+      <button @click="simulateDelayed">延时模拟扫码</button>
       <button :disabled="!listening" @click="stop">停止监听</button>
     </view>
     <text>收到 {{ count }} 条回调</text>
@@ -17,19 +18,21 @@
 import { ref } from 'vue'
 import { onHide, onUnload } from '@dcloudio/uni-app'
 // #ifdef APP-PLUS
-import { onScan, simulateScan, stopScan } from '@/uni_modules/ljh-sdk-starter'
+import { onScan, simulateScan, simulateDelayedScan, stopScan } from '@/uni_modules/ljh-sdk-starter'
 // #endif
 
 const listening = ref(false)
 const count = ref(0)
 const lastCode = ref('')
 const status = ref('等待开始监听')
+let subscriptionId = 0
 
 function start() {
   // #ifdef APP-PLUS
   if (listening.value) return
+  const subscription = ++subscriptionId
   listening.value = onScan(code => {
-    if (!listening.value) return
+    if (!listening.value || subscription !== subscriptionId) return
     count.value += 1
     lastCode.value = code
     status.value = '收到原生 SDK 回调'
@@ -44,6 +47,15 @@ function start() {
 function simulate() {
   // #ifdef APP-PLUS
   if (!simulateScan()) status.value = '当前未监听，没有收到回调'
+  // #endif
+  // #ifndef APP-PLUS
+  status.value = '请在 Android App 中运行此示例'
+  // #endif
+}
+
+function simulateDelayed() {
+  // #ifdef APP-PLUS
+  status.value = simulateDelayedScan() ? '等待原生 SDK 回调' : '当前未监听，没有收到回调'
   // #endif
   // #ifndef APP-PLUS
   status.value = '请在 Android App 中运行此示例'

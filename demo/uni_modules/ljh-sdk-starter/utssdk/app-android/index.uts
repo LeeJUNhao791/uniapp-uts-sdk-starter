@@ -18,6 +18,10 @@ export const simulateScan: SimulateScan = (): boolean => {
   return scanner.simulateScan()
 }
 
+export const simulateDelayedScan: SimulateScan = (): boolean => {
+  return scanner.simulateDelayedScan()
+}
+
 export const stopScan: StopScan = (): void => {
   scanner.stop()
 }

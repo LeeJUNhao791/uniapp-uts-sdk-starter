@@ -23,4 +23,6 @@ flowchart LR
 
 <img src="images/pixel-4-xl-callback.png" width="260" alt="Pixel 4 XL 上的回调验收，最近条码为 DEMO-0001">
 
+上图记录 v0.1.1 的即时回调。在 v0.2.0，按 [README 的验收步骤](../README.md#2-在-android-app-中验收)继续试「延时模拟扫码」。
+
 页面能打开但收不到回调时，先核对运行时选择的基座。标准基座可以加载可热刷的页面资源，本示例的 Java AAR 随自定义基座打包，回调验收需要使用该自定义基座。更新 AAR 或修改原生配置后，重新制作并运行基座。 [DCloud 真机运行说明](https://uniapp.dcloud.net.cn/tutorial/run/run-app.html)

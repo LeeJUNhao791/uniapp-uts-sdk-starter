@@ -1,12 +1,14 @@
 # uniapp-uts-sdk-starter
 
-一个可从源码构建的 Android AAR、一个 uni-app UTS 插件和一个 Vue 3 示例页。点「模拟扫码」，页面收到原生 AAR 回调并显示 `DEMO-0001`。示例无需 PDA、厂商 SDK 或网络服务。
+一个可从源码构建的 Android AAR、一个 uni-app UTS 插件和一个 Vue 3 示例页。点「模拟扫码」或「延时模拟扫码」，页面收到原生 AAR 回调并显示 `DEMO-0001`。示例无需 PDA、厂商 SDK 或网络服务。
 
 面向 **uni-app Vue 3 的 Android App**，最低 Android SDK 配置为 23。示例只生成模拟条码，适合用来验证自己的 AAR 如何接进 uni-app。
 
 [Android 图文上手指南](docs/android-quickstart.md) · [示例 AAR 构建检查](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/actions/workflows/android-aar.yml)
 
 <img src="docs/images/pixel-4-xl-callback.png" width="260" alt="Pixel 4 XL 上的 Android SDK 回调示例，显示最近条码 DEMO-0001 和收到原生 SDK 回调">
+
+截图记录 v0.1.1 的即时回调。v0.2.0 在同一页面增加「延时模拟扫码」。
 
 ## 1. 构建和验证示例 AAR
 
@@ -41,6 +43,14 @@ cd android-sdk
 | 重新开始监听，模拟扫码一次 | 计数达到 3 |
 | 把 App 切到后台再回来，直接模拟扫码 | 计数保持 3，页面需要重新开始监听 |
 
+重新打开示例页后，可以单独验证异步回调。
+
+| 操作 | 预期结果 |
+| --- | --- |
+| 开始监听，点「延时模拟扫码」并等待 | 先显示「等待原生 SDK 回调」，约 2 秒后计数增至 1 |
+| 再点「延时模拟扫码」，在结果返回前点「停止监听」或切到后台 | 等待超过 2 秒后，计数保持 1 |
+| 开始监听，点「延时模拟扫码」，立即停止并重新开始监听 | 上一次请求到期后，计数保持 1。再次点「延时模拟扫码」，收到结果后计数增至 2 |
+
 ## 3. 换成你的 AAR 或 JAR
 
 - [API 类型](demo/uni_modules/ljh-sdk-starter/utssdk/interface.uts) 定义 uni-app 页面能看到的方法和回调类型。
@@ -50,6 +60,8 @@ cd android-sdk
 把你的 AAR/JAR 放到插件的 `utssdk/app-android/libs/`。如果 SDK 有 Maven 坐标，优先在 `app-android/config.json` 的 `dependencies` 中使用 Maven 依赖。按 SDK 文档补所需的权限、资源、混淆规则和依赖，再替换 UTS 桥里的类名、类型和生命周期方法。 [DCloud Android 原生配置](https://uniapp.dcloud.net.cn/plugin/uts-plugin.html#android%E5%B9%B3%E5%8F%B0%E5%8E%9F%E7%94%9F%E9%85%8D%E7%BD%AE)
 
 旧式插件通过 `uni.requireNativePlugin()` 获取模块，通常通过全局事件收结果。迁移后从 `uni_modules` 直接导入函数，原生结果经类型化回调送给页面。持续回调使用 `@UTSJS.keepAlive`。调用方应在一个页面会话里注册一次，并在离开时调用 `stopScan()`，释放原生 SDK 的监听器。 [DCloud 持续回调指南](https://uniapp.dcloud.net.cn/plugin/uts-plugin.html#uts%E6%8F%92%E4%BB%B6%E5%AF%BC%E5%87%BA%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E5%A6%82%E4%BD%95%E6%94%AF%E6%8C%81%E6%8C%81%E7%BB%AD%E8%A7%A6%E5%8F%91)
+
+`simulateDelayedScan()` 返回 `true` 表示请求已排队。结果由 Java 工作线程产生，并通过原有回调送回页面。Java 用订阅编号判断请求是否仍有效。页面也检查当前的订阅编号，以忽略已经进入 UTS 桥、但到达页面时已过期的结果。
 
 如果能编译但手机收不到回调，依次核对 USB 调试、实际启动的基座、基座打包时间、AAR 是否是最新构建、Java 回调是否触发，以及页面是否已停止监听。
 

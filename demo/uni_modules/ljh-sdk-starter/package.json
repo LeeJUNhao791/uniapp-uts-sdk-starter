@@ -1,7 +1,7 @@
 {
   "id": "ljh-sdk-starter",
   "displayName": "Android AAR Callback Starter",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "An Android UTS bridge for a source-built demo SDK.",
   "keywords": ["UTS", "Android", "AAR"],
   "engines": { "HBuilderX": "^5.05" },

@@ -2,8 +2,8 @@
   "name": "UTS SDK Starter",
   "appid": "",
   "description": "Android AAR callback demo",
-  "versionName": "0.1.1",
-  "versionCode": "101",
+  "versionName": "0.2.0",
+  "versionCode": "200",
   "vueVersion": "3",
   "app-plus": {
     "distribute": {
