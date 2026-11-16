@@ -55,7 +55,7 @@ cd android-sdk
 
 - Windows / JDK 17 / Android SDK 35：Gradle 构建、AAR 复制及 Java 监听生命周期测试通过。
 - HBuilderX 5.07：本地编译器生成 uni-app Android 页面资源及 Kotlin 桥，并复制了同一份 AAR。
-- Android 自定义基座和真机界面验收待执行。
+- 2026-11-16，Pixel 4 XL / Android 11（API 30）：使用 HBuilderX 5.07 自定义基座实测。未监听时回调为 0，开启后连续收到两次 `DEMO-0001`，停止后计数保持 2，重新监听后增至 3，切到后台再返回后模拟扫码仍保持 3。已核对手机上安装的 APK 与本地自定义基座 SHA-256 一致。
 
 ## 开源许可
 
