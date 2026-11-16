@@ -1,0 +1,24 @@
+plugins {
+    id 'com.android.library'
+}
+
+android {
+    namespace 'io.github.leejunhao791.textcheck'
+    compileSdk 35
+
+    defaultConfig {
+        minSdk 23
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+tasks.register('verifyTextCheck', JavaExec) {
+    dependsOn 'compileReleaseUnitTestJavaWithJavac'
+    classpath layout.buildDirectory.dir('intermediates/javac/releaseUnitTest/compileReleaseUnitTestJavaWithJavac/classes'),
+              layout.buildDirectory.dir('intermediates/javac/release/compileReleaseJavaWithJavac/classes')
+    mainClass = 'io.github.leejunhao791.textcheck.TextCheckerTest'
+}

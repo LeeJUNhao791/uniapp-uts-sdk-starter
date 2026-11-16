@@ -1,0 +1,7 @@
+export type TextCheckResult = {
+  ok: boolean
+  length: number
+  errorCode: string
+}
+
+export type CheckText = (text: string) => TextCheckResult

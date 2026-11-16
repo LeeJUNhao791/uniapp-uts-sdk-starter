@@ -53,6 +53,8 @@ cd android-sdk
 
 ## 3. 换成你的 AAR 或 JAR
 
+[跟做文本校验 AAR 替换示例](docs/replace-aar.md)。从干净副本替换依赖、UTS 接口和页面，最后在 Android 上确认 `hello` 返回长度 `5`，空输入返回 `EMPTY_INPUT`。
+
 - [API 类型](demo/uni_modules/ljh-sdk-starter/utssdk/interface.uts) 定义 uni-app 页面能看到的方法和回调类型。
 - [Android UTS 桥](demo/uni_modules/ljh-sdk-starter/utssdk/app-android/index.uts) 导入 Java 类，实现 SDK 的回调接口。
 - [演示页](demo/pages/index/index.vue) 调用插件，并在页面隐藏和卸载时停止监听。
@@ -67,7 +69,7 @@ cd android-sdk
 
 ## 验证记录
 
-- GitHub Actions：从干净检出编译示例 AAR、运行 Java 回调测试、核对插件目录中的 AAR 副本并检查公开 AppID 为空。
+- GitHub Actions：从干净检出构建两个示例 AAR、运行 Java 测试、核对扫码 AAR 副本并检查公开 AppID 为空。
 - Windows / JDK 17 / Android SDK 35：Gradle 构建、AAR 复制及 Java 监听生命周期测试通过。
 - HBuilderX 5.07：本地编译器生成 uni-app Android 页面资源及 Kotlin 桥，并复制了同一份 AAR。
 - 2026-11-16，Pixel 4 XL / Android 11（API 30）：使用 HBuilderX 5.07 自定义基座实测。未监听时回调为 0，开启后连续收到两次 `DEMO-0001`，停止后计数保持 2，重新监听后增至 3，切到后台再返回后模拟扫码仍保持 3。已核对手机上安装的 APK 与本地自定义基座 SHA-256 一致。

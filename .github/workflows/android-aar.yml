@@ -22,13 +22,14 @@ jobs:
           java-version: '17'
       - name: Install Android SDK Platform 35
         run: '"$ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager" "platforms;android-35"'
-      - name: Build the example and test Java callbacks
+      - name: Build both examples and run Java tests
         working-directory: android-sdk
-        run: ./gradlew --no-daemon verifyDemoScanner stageDemoAar
+        run: ./gradlew --no-daemon verifyDemoScanner stageDemoAar :text-check:verifyTextCheck :text-check:assembleRelease
       - name: Verify the staged AAR and public manifest
         run: |
           built=android-sdk/build/outputs/aar/demo-scanner-release.aar
           staged=demo/uni_modules/ljh-sdk-starter/utssdk/app-android/libs/demo-scanner-release.aar
           test -s "$staged"
           cmp "$built" "$staged"
+          test -s android-sdk/text-check/build/outputs/aar/text-check-release.aar
           python3 -c 'import json; assert json.load(open("demo/manifest.json"))["appid"] == "", "The public AppID must be empty"'

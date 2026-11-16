@@ -1,0 +1,12 @@
+import TextChecker from 'io.github.leejunhao791.textcheck.TextChecker'
+import { CheckText, TextCheckResult } from '../interface.uts'
+
+export const checkText: CheckText = (text: string): TextCheckResult => {
+  const result = TextChecker.check(text)
+  const errorCode = result.getErrorCode()
+  return {
+    ok: errorCode == '',
+    length: result.getLength(),
+    errorCode: errorCode
+  }
+}
