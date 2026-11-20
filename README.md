@@ -63,7 +63,7 @@ cd android-sdk
 
 把你的 AAR/JAR 放到插件的 `utssdk/app-android/libs/`。如果 SDK 有 Maven 坐标，优先在 `app-android/config.json` 的 `dependencies` 中使用 Maven 依赖。按 SDK 文档补所需的权限、资源、混淆规则和依赖，再替换 UTS 桥里的类名、类型和生命周期方法。 [DCloud Android 原生配置](https://uniapp.dcloud.net.cn/plugin/uts-plugin.html#android%E5%B9%B3%E5%8F%B0%E5%8E%9F%E7%94%9F%E9%85%8D%E7%BD%AE)
 
-旧式插件通过 `uni.requireNativePlugin()` 获取模块，通常通过全局事件收结果。迁移后从 `uni_modules` 直接导入函数，原生结果经类型化回调送给页面。持续回调使用 `@UTSJS.keepAlive`。调用方应在一个页面会话里注册一次，并在离开时调用 `stopScan()`，释放原生 SDK 的监听器。 [DCloud 持续回调指南](https://uniapp.dcloud.net.cn/plugin/uts-plugin.html#uts%E6%8F%92%E4%BB%B6%E5%AF%BC%E5%87%BA%E6%96%B9%E6%B3%95%E4%B8%AD%E7%9A%84%E5%9B%9E%E8%B0%83%E5%87%BD%E6%95%B0%E5%8F%82%E6%95%B0%E5%A6%82%E4%BD%95%E6%94%AF%E6%8C%81%E6%8C%81%E7%BB%AD%E8%A7%A6%E5%8F%91)
+旧式插件通过 `uni.requireNativePlugin()` 获取模块，通常通过全局事件收结果。迁移后从 `uni_modules` 直接导入函数，原生结果经类型化回调送给页面。持续回调使用 `@UTSJS.keepAlive`。调用方应在一个页面会话里注册一次，并在离开时调用 `stopScan()`，释放原生 SDK 的监听器。 [DCloud 持续回调指南](https://uniapp.dcloud.net.cn/plugin/uts-plugin.html#keepalive)
 
 `simulateDelayedScan()` 返回 `true` 表示请求已排队。结果由 Java 工作线程产生，并通过原有回调送回页面。Java 用订阅编号判断请求是否仍有效。页面也检查当前的订阅编号，以忽略已经进入 UTS 桥、但到达页面时已过期的结果。
 

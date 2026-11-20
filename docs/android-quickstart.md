@@ -19,7 +19,7 @@ flowchart LR
 
 ## 3. 用自定义基座运行到手机
 
-解锁手机，通过 USB 连接电脑并允许 USB 调试。在 HBuilderX 的「运行」菜单选择运行到 Android 设备，选中手机，并将基座设为「自定义基座」→「本地基座」。在手机上点「开始监听」和「模拟扫码」。页面应显示「收到 1 条回调」「最近条码 DEMO-0001」和「收到原生 SDK 回调」。 [DCloud 基座选择界面](https://uniapp.dcloud.net.cn/tutorial/run/run-app.html#%E4%BD%BF%E7%94%A8%E8%87%AA%E5%AE%9A%E4%B9%89%E5%9F%BA%E5%BA%A7%E8%BF%90%E8%A1%8C)
+解锁手机，通过 USB 连接电脑并允许 USB 调试。在 HBuilderX 的「运行」菜单选择运行到 Android 设备，选中手机，并将基座设为「自定义基座」→「本地基座」。在手机上点「开始监听」和「模拟扫码」。页面应显示「收到 1 条回调」「最近条码 DEMO-0001」和「收到原生 SDK 回调」。 [DCloud 基座选择界面](https://uniapp.dcloud.net.cn/tutorial/run/run-app.html#customplayground)
 
 <img src="images/pixel-4-xl-callback.png" width="260" alt="Pixel 4 XL 上的回调验收，最近条码为 DEMO-0001">
 
