@@ -1,5 +1,7 @@
 # uniapp-uts-sdk-starter
 
+[English quickstart](README.en.md)
+
 一个可从源码构建的 Android AAR、一个 uni-app UTS 插件和一个 Vue 3 示例页。点「模拟扫码」或「延时模拟扫码」，页面收到原生 AAR 回调并显示 `DEMO-0001`。示例无需 PDA、厂商 SDK 或网络服务。
 
 面向 **uni-app Vue 3 的 Android App**，最低 Android SDK 配置为 23。示例只生成模拟条码，适合用来验证自己的 AAR 如何接进 uni-app。
