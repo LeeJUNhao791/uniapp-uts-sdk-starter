@@ -2,6 +2,10 @@
 
 [English quickstart](README.en.md)
 
+[![main 分支 Android AAR 构建](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/actions/workflows/android-aar.yml/badge.svg?branch=main)](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/actions/workflows/android-aar.yml)
+[![最新版本](https://img.shields.io/github/v/release/LeeJUNhao791/uniapp-uts-sdk-starter)](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/releases/latest)
+[![MIT 许可证](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 一个可从源码构建的 Android AAR、一个 uni-app UTS 插件和一个 Vue 3 示例页。点「模拟扫码」或「延时模拟扫码」，页面收到原生 AAR 回调并显示 `DEMO-0001`。示例无需 PDA、厂商 SDK 或网络服务。
 
 面向 **uni-app Vue 3 的 Android App**，最低 Android SDK 配置为 23。示例只生成模拟条码，适合用来验证自己的 AAR 如何接进 uni-app。
@@ -77,5 +81,7 @@ cd android-sdk
 - 2026-11-16，Pixel 4 XL / Android 11（API 30）：使用 HBuilderX 5.07 自定义基座实测。未监听时回调为 0，开启后连续收到两次 `DEMO-0001`，停止后计数保持 2，重新监听后增至 3，切到后台再返回后模拟扫码仍保持 3。已核对手机上安装的 APK 与本地自定义基座 SHA-256 一致。
 
 ## 开源许可
+
+提交问题或改动前请阅读[贡献指南](CONTRIBUTING.md)。
 
 示例源码使用 [MIT](LICENSE)。Gradle Wrapper 使用文件中标明的 Apache-2.0 许可。如果你接入自己的 SDK，请按该 SDK 的许可交付依赖。

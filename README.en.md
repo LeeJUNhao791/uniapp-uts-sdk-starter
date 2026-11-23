@@ -1,6 +1,10 @@
 # uniapp-uts-sdk-starter
 
-[简体中文](README.md) · [Android AAR build checks](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/actions/workflows/android-aar.yml) · [Source release v0.2.1](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/releases/tag/v0.2.1)
+[简体中文](README.md) · [Android AAR build checks](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/actions/workflows/android-aar.yml) · [Latest source release](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/releases/latest)
+
+[![Android AAR build on main](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/actions/workflows/android-aar.yml/badge.svg?branch=main)](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/actions/workflows/android-aar.yml)
+[![Latest release](https://img.shields.io/github/v/release/LeeJUNhao791/uniapp-uts-sdk-starter)](https://github.com/LeeJUNhao791/uniapp-uts-sdk-starter/releases/latest)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 Connect an Android library (AAR) to a uni-app Vue 3 page through a UTS plugin. Build the sample AAR from source, then tap the demo buttons to see the Java callback deliver `DEMO-0001`. The runtime example uses a simulated barcode and requires no scanner, vendor SDK or backend. The Android app sets a minimum SDK of 23.
 
@@ -55,5 +59,7 @@ In the replacement demo, tap **Validate text** (「校验文本」) with `hello`
 When integrating your own Android SDK, use [`interface.uts`](demo/uni_modules/ljh-sdk-starter/utssdk/interface.uts) for the public types and [`app-android/index.uts`](demo/uni_modules/ljh-sdk-starter/utssdk/app-android/index.uts) for the native calls. The [Vue page](demo/pages/index/index.vue) shows how to import from `@/uni_modules/ljh-sdk-starter` and stop listening on page hide or unload. Use `@UTSJS.keepAlive` for a callback that can fire more than once. [DCloud UTS plugin guide](https://uniapp.dcloud.net.cn/plugin/uts-plugin.html)
 
 ## License
+
+Read the [contribution guide](CONTRIBUTING.md) before reporting an issue or sending a change.
 
 The example source is [MIT licensed](LICENSE). The Gradle Wrapper uses Apache-2.0. Follow the dependency's distribution terms when integrating your own SDK.
