@@ -1,0 +1,31 @@
+name: Bug report
+description: Report a problem with the demo, AAR replacement, or quickstart. Chinese and English reports are welcome.
+body:
+  - type: input
+    id: revision
+    attributes:
+      label: Repository version
+      description: Release tag or commit SHA.
+    validations:
+      required: true
+  - type: input
+    id: hbuilderx
+    attributes:
+      label: HBuilderX version
+      description: Enter the full version, or "not used" for a Gradle-only issue.
+    validations:
+      required: true
+  - type: input
+    id: platform
+    attributes:
+      label: Platform and device
+      description: Include Android version and device or emulator model, or the build OS for a build-only issue.
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Include the steps, expected result, and actual result. Omit private AppIDs, credentials, and private SDK files.
+    validations:
+      required: true
